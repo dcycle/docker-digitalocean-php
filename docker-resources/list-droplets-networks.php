@@ -16,19 +16,12 @@ $digitalocean = new DigitalOceanV2($adapter);
 $droplet = $digitalocean->droplet();
 
 // return a collection of Droplet entity
-$created = $droplet->create('server-' . rand(1000000, 9999999), 'nyc3', '1gb', 'docker-16-04', FALSE, FALSE, FALSE, array(getenv('SSH_FINGERPRINT')));
+$droplets = $droplet->getAll();
 
-$id = $created->id;
+$return = array();
 
-for ($i = 0; $i < 90; $i++) {
-  sleep(5);
-  $droplets = $droplet->getAll();
-  foreach ($droplets as $droplet) {
-    if ($droplet->id == $id) {
-      if (isset($droplet->networks[0]->ipAddress)) {
-        print_r($droplet->networks[0]->ipAddress);
-        break 2;
-      }
-    }
-  }
+foreach ($droplets as $droplet) {
+  $return[$droplet->id] = $droplet->networks;
 }
+
+print_r($return);
