@@ -10,7 +10,7 @@ You do not need to download this code; you only need Docker to run this code.
     mkdir ~/.digitalocean-php
     echo 'TOKEN=my-token' >> ~/.digitalocean-php/token.env
     echo 'SSH_FINGERPRINT=aa:aa:aa:aa:aa:aa:aa:aa:aa:aa:aa:aa:aa:aa:aa:aa' >> ~/.digitalocean-php/token.env
-    docker run --env-file ~/.digitalocean-php/token.env  dcycle/digitalocean-php /bin/bash -c 'php /scripts/list-droplets.php'
+    ./scripts/list-droplets.sh
 
 (The SSH fingerprint is the fingerprint of an SSH key which you added to your DigitalOcean account and which you would like to use to access your new droplets)
 
