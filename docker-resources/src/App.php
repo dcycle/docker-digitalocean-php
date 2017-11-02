@@ -102,6 +102,17 @@ class App {
     return $return;
   }
 
+  /**
+   * Create a new droplet.
+   *
+   * @param string $name
+   *   The name for this droplet.
+   *
+   * @return string
+   *   Its IP address.
+   *
+   * @throws Exception
+   */
   public function newDroplet(string $name) : string {
     $dropletapi = $this->dropletApi();
     $created = $dropletapi->create($name,

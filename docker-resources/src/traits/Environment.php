@@ -58,7 +58,7 @@ trait Environment {
       throw new \Exception('Please make sure the environment variable ' . $name . ' is set.');
     }
     $return = (string) $return;
-    return $return ? : $default;
+    return $return ?: $default;
   }
 
   /**
