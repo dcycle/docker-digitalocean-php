@@ -1,5 +1,7 @@
 Docker wrapper around [Digital Ocean PHP API](https://github.com/toin0u/DigitalOceanV2).
 
+[![CircleCI](https://circleci.com/gh/dcycle/docker-digitalocean-php.svg?style=svg)](https://circleci.com/gh/dcycle/docker-digitalocean-php)
+
 Usage
 -----
 
