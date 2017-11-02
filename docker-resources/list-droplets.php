@@ -1,21 +1,12 @@
 <?php
 
-require 'vendor/autoload.php';
+/**
+ * @file
+ * Example entrypoint for our application.
+ */
 
-use DigitalOceanV2\Adapter\BuzzAdapter;
-use DigitalOceanV2\DigitalOceanV2;
+require_once 'autoload.php';
 
-// create an adapter with your access token which can be
-// generated at https://cloud.digitalocean.com/settings/applications
-$adapter = new BuzzAdapter(getenv('TOKEN'));
+use digitalocean_php\App;
 
-// create a digital ocean object with the previous adapter
-$digitalocean = new DigitalOceanV2($adapter);
-
-// return the droplet api
-$droplet = $digitalocean->droplet();
-
-// return a collection of Droplet entity
-$droplets = $droplet->getAll();
-
-print_r($droplets);
+App::instance()->printR(App::instance()->listDroplets(App::instance()->arg($argv, 1, '*'), App::instance()->arg($argv, 2, '*')));
