@@ -19,3 +19,16 @@ You do not need to download this code; you only need Docker to run this code.
 With your own scripts:
 
     docker run --env-file ~/.digitalocean-php/token.env -v /path/to/my/scripts:/my-scripts dcycle/digitalocean-php /bin/bash -c 'php /my-scripts/list-droplets.php'
+
+Multiple environment files
+-----
+
+If you only have one Digital Ocean account, put all information related to the account in ~/.digitalocean-php/token.env, and use the scripts like this:
+
+    ./scripts/new-droplet.sh throwaway-droplet
+    ./scripts/delete-droplets name /^throwaway-droplet$/
+
+If you have multiple accounts or usages, duplicate the ~/.digitalocean-php/token.env and add account information into the new file, for example ~/.digitalocean-php/some-other-account.env, then use:
+
+    ./scripts/new-droplet.sh -asome-other-account throwaway-droplet
+    ./scripts/delete-droplets -asome-other-account name /^throwaway-droplet$/
