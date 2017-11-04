@@ -19,3 +19,8 @@ You do not need to download this code; you only need Docker to run this code.
 With your own scripts:
 
     docker run --env-file ~/.digitalocean-php/token.env -v /path/to/my/scripts:/my-scripts dcycle/digitalocean-php /bin/bash -c 'php /my-scripts/list-droplets.php'
+
+Multiple environment files
+-----
+
+All the scripts assume that your environment file is `~/.digitalocean-php/token.env`, and, indeed, if you look at the code in any of the script files, they are simply shortcuts to Docker commands with `~/.digitalocean-php/token.env` being hard-coded. If you plan to be using these scripts with different 
