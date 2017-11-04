@@ -23,4 +23,12 @@ With your own scripts:
 Multiple environment files
 -----
 
-All the scripts assume that your environment file is `~/.digitalocean-php/token.env`, and, indeed, if you look at the code in any of the script files, they are simply shortcuts to Docker commands with `~/.digitalocean-php/token.env` being hard-coded. If you plan to be using these scripts with different 
+If you only have one Digital Ocean account, put all information related to the account in ~/.digitalocean-php/token.env, and use the scripts like this:
+
+    ./scripts/new-droplet.sh throwaway-droplet
+    ./scripts/delete-droplets name /^throwaway-droplet$/
+
+If you have multiple accounts or usages, duplicate the ~/.digitalocean-php/token.env and add account information into the new file, for example ~/.digitalocean-php/some-other-account.env, then use:
+
+    ./scripts/new-droplet.sh -asome-other-account throwaway-droplet
+    ./scripts/delete-droplets -asome-other-account name /^throwaway-droplet$/
