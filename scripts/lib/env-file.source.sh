@@ -1,3 +1,4 @@
+# See https://stackoverflow.com/questions/7069682
 while getopts ":a:" opt; do
   case $opt in
     a)
