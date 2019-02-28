@@ -32,3 +32,17 @@ If you have multiple accounts or usages, duplicate the ~/.digitalocean-php/token
 
     ./scripts/new-droplet.sh -asome-other-account throwaway-droplet
     ./scripts/delete-droplets -asome-other-account name /^throwaway-droplet$/
+    
+Troubleshooting
+-----
+
+Sometimes if you are creating a VM from a specific image, for example if ~/.digitalocean-php/token.env contains:
+
+    ...
+    IMAGE=docker-18-04
+    ...
+    
+DigitalOcean sometimes changes the image machine names (called slugs). To get an updated list of available images, you can run (in this example we're interested in application type images):
+
+    source ~/.digitalocean-php/token.env
+    curl -H "Authorization: Bearer $TOKEN" -X GET "https://api.digitalocean.com/v2/images?type=application"
