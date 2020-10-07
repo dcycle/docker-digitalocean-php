@@ -21,4 +21,4 @@ set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "$DIR"/lib/env-file.source.sh
 
-docker run --env-file "$ENVFILE" dcycle/digitalocean-php /bin/bash -c "php /scripts/delete-droplets.php $1 $2"
+docker run --rm --env-file "$ENVFILE" dcycle/digitalocean-php /bin/bash -c "php /scripts/delete-droplets.php $1 $2"
