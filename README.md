@@ -32,3 +32,15 @@ If you have multiple accounts or usages, duplicate the ~/.digitalocean-php/token
 
     ./scripts/new-droplet.sh -asome-other-account throwaway-droplet
     ./scripts/delete-droplets -asome-other-account name /^throwaway-droplet$/
+
+Troubleshooting
+-----
+
+Before September 2020, `./scripts/new-droplet.sh` would always return the public IP address of the new server, for example:
+
+    PUBLIC_IP=$(./scripts/new-droplet.sh hello-world)
+
+Due to a possible change in the API, `./scripts/new-droplet.sh` no longer returns the public IP. If you have scripts which try to obtain the public IP this manner, you need to change them to something like this hacky and ugly command:
+
+    PRIVATE_IP=$(./scripts/new-droplet.sh hello-world)
+    PUBLIC_IP=$(./scripts/list-droplets.sh |grep 10.132.0.3 --after-context=10|tail -1|cut -b 44-)
