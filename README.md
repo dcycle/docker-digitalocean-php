@@ -45,7 +45,7 @@ Before September 2020, `./scripts/new-droplet.sh` would always return the public
 Due to a possible change in the API, `./scripts/new-droplet.sh` no longer returns the public IP. If you have scripts which try to obtain the public IP this manner, you need to change them to something like this hacky and ugly command:
 
     PRIVATE_IP=$(./scripts/new-droplet.sh hello-world)
-    PUBLIC_IP=$(./scripts/list-droplets.sh |grep 10.132.0.3 --after-context=10|tail -1|cut -b 44-)
+    PUBLIC_IP=$(./scripts/list-droplets.sh |grep "$PRIVATE_IP" --after-context=10|tail -1|cut -b 44-)
 
 ### Changing image names
 
