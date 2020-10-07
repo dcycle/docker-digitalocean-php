@@ -36,6 +36,8 @@ If you have multiple accounts or usages, duplicate the ~/.digitalocean-php/token
 Troubleshooting
 -----
 
+### Public vs private IP addresses
+
 Before September 2020, `./scripts/new-droplet.sh` would always return the public IP address of the new server, for example:
 
     PUBLIC_IP=$(./scripts/new-droplet.sh hello-world)
@@ -44,3 +46,16 @@ Due to a possible change in the API, `./scripts/new-droplet.sh` no longer return
 
     PRIVATE_IP=$(./scripts/new-droplet.sh hello-world)
     PUBLIC_IP=$(./scripts/list-droplets.sh |grep 10.132.0.3 --after-context=10|tail -1|cut -b 44-)
+
+### Changing image names
+
+Sometimes if you are creating a VM from a specific image, for example if ~/.digitalocean-php/token.env contains:
+
+    ...
+    IMAGE=docker-18-04
+    ...
+
+DigitalOcean sometimes changes the image machine names (called slugs). To get an updated list of available images, you can run (in this example we're interested in application type images):
+
+    source ~/.digitalocean-php/token.env
+    curl -H "Authorization: Bearer $TOKEN" -X GET "https://api.digitalocean.com/v2/images?type=application"
