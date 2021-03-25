@@ -1,6 +1,13 @@
-Docker wrapper around [Digital Ocean PHP API](https://github.com/toin0u/DigitalOceanV2).
+Deprecation notice
+-----
 
-[![CircleCI](https://circleci.com/gh/dcycle/docker-digitalocean-php.svg?style=svg)](https://circleci.com/gh/dcycle/docker-digitalocean-php)
+2021-03-25: Although this still may work, it is no longer being maintained. Instead, you can use:
+
+* https://github.com/digitalocean/doctl
+* https://github.com/dcycle/docker-doctl
+* https://github.com/dcycle/api_client_helper
+
+Docker wrapper around [Digital Ocean PHP API](https://github.com/toin0u/DigitalOceanV2).
 
 Usage
 -----
