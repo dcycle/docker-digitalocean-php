@@ -54,6 +54,26 @@ Due to a possible change in the API, `./scripts/new-droplet.sh` no longer return
     PRIVATE_IP=$(./scripts/new-droplet.sh hello-world)
     PUBLIC_IP=$(./scripts/list-droplets.sh |grep "$PRIVATE_IP" --after-context=10|tail -1|cut -b 44-)
 
+In September 2021, the DigitalOcean API has begun returning private (starting with 10.) IPs and public IPs in an unpredictable order. The following script seems to work to obtain the IP address:
+
+source ~/.docker-host-ssh-credentials
+
+    # Create a droplet
+    DROPLET_NAME=my-droplet-name
+    DOCKERHOSTUSER=username_for_vm_containing_docker
+    DOCKERHOST=mydockervm.example.com
+    IP1=$(ssh "$DOCKERHOSTUSER"@"$DOCKERHOST" \
+      "./digitalocean/scripts/new-droplet.sh $DROPLET_NAME")
+    # https://github.com/dcycle/docker-digitalocean-php#public-vs-private-ip-addresses
+    IP2=$(ssh "$DOCKERHOSTUSER"@"$DOCKERHOST" "./digitalocean/scripts/list-droplets.sh" |grep "$IP1" --after-context=10|tail -1|cut -b 44-)
+    echo "Now determining which of the IPs $IP1 or $IP2 is the public IP"
+    if [[ $IP1 == 10.* ]]; then 
+      IP="$IP2";
+    else
+      IP="$IP1";
+    fi
+    echo "Created Droplet at $IP"
+
 ### Changing image names
 
 Sometimes if you are creating a VM from a specific image, for example if ~/.digitalocean-php/token.env contains:
