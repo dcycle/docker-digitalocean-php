@@ -1,6 +1,8 @@
 Deprecation notice
 -----
 
+2024-04-02: This project is officially obsolete due to [this issue](https://github.com/dcycle/docker-digitalocean-php/issues/3). Please use https://github.com/digitalocean/doctl instead.
+
 2021-03-25: Although this still may work, it is no longer being maintained. Instead, you can use:
 
 * https://github.com/digitalocean/doctl
